@@ -1,7 +1,6 @@
 
 function checkPalindrom (str) {
-  str = str.toLowerCase();
-  return str === str.split('').reverse().join('');
+  return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
 }
 
 checkPalindrom("довОд");
