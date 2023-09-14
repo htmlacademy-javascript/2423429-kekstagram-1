@@ -8,10 +8,6 @@ checkPalindrom('довОд');
 
 //Функция поиска чисел
 function checkNum(str) {
-  //точно пришла строка?
-  if (typeof str === 'number') {
-    return str;
-  }
   // поиск совпадений в строке на число где \d+/ границы диапалона чисел /g -глобальный
   const numArr = str?.match(/\d+/g);
 
@@ -23,3 +19,4 @@ function checkNum(str) {
 }
 
 checkNum('fdgdfgd456fgdfg');
+
