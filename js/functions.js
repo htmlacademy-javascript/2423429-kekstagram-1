@@ -30,34 +30,33 @@ checkNum('fdgdfgd456fgdfg');
 // Эта функция нам пригодится для формирования адресов файлов. Примеры её использования:
 
 function sumString(str, minLength, strAdd) {
+  //Проверка на длину исходной строки
   if (minLength <= str.length) {
     return str;
   }
-  const count = str.length + strAdd.length - minLength; // количество символов которые нужно удалить из добавочной строки для достижения требуемой длины
   let newStrAdd = '';
-  if (count > 0) {
-    newStrAdd = strAdd.substring(0, strAdd.length - count);
-  } else {
-    let flag = 0;
-    const number = minLength - str.length;
-    for (let i = 0; i < number; i++) {
-      if (i > strAdd.length - 1) {
-        if (flag > strAdd.length - 1) {
-          flag = 0;
-        }
-        newStrAdd = strAdd[flag] + newStrAdd;
-        flag++;
-        continue;
+  // Количество символов, которые нужно добавить для достижения минимальной длины
+  const amount = minLength - str.length;
+  let flag = 0; //Обнуление индекса элемента добавочной строки
+
+  //Заполнение новой строки
+  for (let i = 0; i < amount; i++) {
+    if (i > strAdd.length - 1) {
+      if (flag > strAdd.length - 1) {
+        flag = 0;
       }
-      newStrAdd += strAdd[i];
+      newStrAdd = strAdd[flag] + newStrAdd;
+      flag++;
+      // переход на след. итерацию
+      continue;
     }
+    newStrAdd += strAdd[i];
   }
   return newStrAdd + str;
 }
 
-
-console.log(sumString('1', 2, '0'),
-sumString('1', 4, '0'),
-sumString('q', 4, 'werty'),
-sumString('q', 4, 'we'),
-sumString('qwerty', 4, '0'));
+sumString('1', 2, '0');
+sumString('1', 4, '0');
+sumString('q', 4, 'werty');
+sumString('q', 4, 'we');
+sumString('qwerty', 4, '0');
