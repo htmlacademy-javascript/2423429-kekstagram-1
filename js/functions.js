@@ -1,5 +1,5 @@
 // Функция проверки на палиндром с разными
-function checkPalindrom (str) {
+function checkPalindrom(str) {
   return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
 }
 
@@ -20,34 +20,44 @@ function checkNum(str) {
 
 checkNum('fdgdfgd456fgdfg');
 
-//Функция, которая принимает три параметра: исходную строку, минимальную длину
-//и строку с добавочными символами — и возвращает исходную строку, дополненную
+//Функция, которая принимает три параметра:
+//исходную строку, минимальную длину и строку с добавочными символами
+// — и возвращает исходную строку, дополненную
 //указанными символами до заданной длины. Символы добавляются в начало строки.
 //Если исходная строка превышает заданную длину, она не должна обрезаться.
 //Если «добивка» слишком длинная, она обрезается с конца.
 
 // Эта функция нам пригодится для формирования адресов файлов. Примеры её использования:
 
-function  sumString (str, minLength, strAdd){
-
-let canAdd = Number(str.Length) - Number(strAdd.Length);
-console.log(canAdd);
-for(let i = minLength; i > 1 ; i--){
-    str = strAdd + str;
-//console.log(str);
+function sumString(str, minLength, strAdd) {
+  if (minLength <= str.length) {
+    return str;
+  }
+  const count = str.length + strAdd.length - minLength; // количество символов которые нужно удалить из добавочной строки для достижения требуемой длины
+  let newStrAdd = '';
+  if (count > 0) {
+    newStrAdd = strAdd.substring(0, strAdd.length - count);
+  } else {
+    let flag = 0;
+    const number = minLength - str.length;
+    for (let i = 0; i < number; i++) {
+      if (i > strAdd.length - 1) {
+        if (flag > strAdd.length - 1) {
+          flag = 0;
+        }
+        newStrAdd = strAdd[flag] + newStrAdd;
+        flag++;
+        continue;
+      }
+      newStrAdd += strAdd[i];
+    }
+  }
+  return newStrAdd + str;
 }
-return str;
-};
-// Добавочный символ использован один раз
-sumString('q', 4, 'werty');      // '01'
-// Добавочный символ использован три раза
-sumString('1', 4, '0');      // '0001'
 
-// // Добавочные символы обрезаны с конца
-// имяФункции('q', 4, 'werty');  // 'werq'
 
-// // Добавочные символы использованы полтора раза
-// имяФункции('q', 4, 'we');     // 'wweq'
-
-// // Добавочные символы не использованы, исходная строка не изменена
-// имяФункции('qwerty', 4, '0'); // 'qwerty'
+console.log(sumString('1', 2, '0'),
+sumString('1', 4, '0'),
+sumString('q', 4, 'werty'),
+sumString('q', 4, 'we'),
+sumString('qwerty', 4, '0'));
