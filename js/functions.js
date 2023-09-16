@@ -9,17 +9,6 @@ const isLessOrEqual = (String, length) => {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 // Функция проверки на палиндром с разными
 function checkPalindrom(str) {
   return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
