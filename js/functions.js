@@ -1,3 +1,25 @@
+
+const isLessOrEqual = (String, length) => {
+  if (String.length <= length) {
+    return true;
+  } else {
+    return false;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Функция проверки на палиндром с разными
 function checkPalindrom(str) {
   return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
