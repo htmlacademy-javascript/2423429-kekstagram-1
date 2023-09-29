@@ -40,14 +40,19 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 
 // id, число — идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
 
-const generateId = function(){
 
+const generateId = function(){
+  let count = 1;
+  return function(){
+    return count ++;
+  };
 
 };
 
 const createGallery = () => ({
-  id: generateId(),
+  id: generateId() + 1,
   avatar: '',
+  likes: getRandomInteger(15, 200),
   message: getRandomArrayElement(RANDOM_MESSAGE),
   name: ''
 });
