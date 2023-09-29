@@ -16,19 +16,29 @@
 // }
 
 
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
+// const getRandomInteger = (a, b) => {
+//   const lower = Math.ceil(Math.min(a, b));
+//   const upper = Math.floor(Math.max(a, b));
+//   const result = Math.random() * (upper - lower + 1) + lower;
+//   return Math.floor(result);
+
+
+
+const CANVAS_SIZE = 25;
+//const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+
+
+const generateId = function(){
+
+  
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
-
 const createGallery = () => ({
-  id: '',
+  id: generateId(),
   avatar: '',
   message: '',
   name: ''
 });
-const similarGallery = Array.from({length: 25}, createGallery);
+
+const similarGallery = Array.from({length: CANVAS_SIZE}, createGallery);
+console.log(similarGallery[0]);
