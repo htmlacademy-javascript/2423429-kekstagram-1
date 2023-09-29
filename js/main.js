@@ -14,6 +14,15 @@
 //   message: 'В целом всё неплохо. Но не всё.',
 //   name: 'Артём',
 // }
+// Создал массив сообщений для рандомного вывода
+const RANDOM_MESSAGE = [
+'Всё отлично!',
+'В целом всё неплохо. Но не всё.',
+'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+];
 
 
 const getRandomInteger = (a, b) => {
@@ -28,7 +37,8 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 const createGallery = () => ({
   id: '',
   avatar: '',
-  message: '',
+  message: getRandomArrayElement(RANDOM_MESSAGE),
   name: ''
 });
 const similarGallery = Array.from({length: 25}, createGallery);
+console.log(similarGallery);
