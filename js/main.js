@@ -15,6 +15,7 @@
 //   name: 'Артём',
 // }
 
+
 const CANVAS_SIZE = 25;
 // url, строка — адрес картинки вида photos/{{i}}.jpg, где {{i}} — это число от 1 до 25. Адреса картинок не должны повторяться.
 
@@ -26,6 +27,17 @@ const RANDOM_MESSAGE = [
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+];
+
+const RANDOM_NAME = [
+  'Хуан',
+  'Себастьян',
+  'Мария',
+  'Кристоф',
+  'Виктор',
+  'Юлия',
+  'Люпита',
+  'Вашингтон',
 ];
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -39,22 +51,25 @@ const getRandomArrayElement = (elements) => elements[getRandomInteger(0, element
 // likes, число — количество лайков, поставленных фотографии. Случайное число от 15 до 200.
 
 // id, число — идентификатор опубликованной фотографии. Это число от 1 до 25. Идентификаторы не должны повторяться.
+let countId = 0;
 
+const generateId = () =>{
+  countId = countId + 1;
+  return countId;
+};
 
-const generateId = function(){
-  let count = 1;
-  return function(){
-    return count ++;
-  };
-
+let countImg = 0;
+const generateAvatar = () => {
+  countImg = countImg + 1;
+  return `photos/${ countImg }.jpg` ;
 };
 
 const createGallery = () => ({
-  id: generateId() + 1,
-  avatar: '',
+  id: generateId(),
+  avatar: generateAvatar(),
   likes: getRandomInteger(15, 200),
   message: getRandomArrayElement(RANDOM_MESSAGE),
-  name: ''
+  name: getRandomArrayElement(RANDOM_NAME)
 });
 const similarGallery = Array.from({length: CANVAS_SIZE}, createGallery);
 console.log(similarGallery);
