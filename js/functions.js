@@ -6,8 +6,8 @@ const isLessOrEqual = (String, length) => {
     return false;
   }
 
-}
-
+};
+isLessOrEqual('строка для проверки', 20);
 
 // Функция проверки на палиндром с разными
 function checkPalindrom(str) {
