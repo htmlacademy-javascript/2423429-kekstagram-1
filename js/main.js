@@ -30,25 +30,39 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-let countId = 0;
 
-const generateId = () =>{
-  countId = countId + 1;
-  return countId;
+const makeIdGenerator = () =>{
+  let countId = 0;
+
+  return () => {
+    countId += 1;
+    return countId;
+  };
 };
+const generateId = makeIdGenerator();
 
 let countImg = 0;
 const generateAvatar = () => {
   countImg = countImg + 1;
   return `photos/${ countImg }.jpg` ;
 };
+// const generateAvatar = (generateId) => `photos/${id}.jpg`;
+// const generatePost = (id) => {
+//   const id = generateId();
 
-const createGallery = () => ({
+//  return {
+//      id,
+//      avatar: generateAvatar(id)
+
+//  }
+// }
+
+const createPost = () => ({
   id: generateId(),
   avatar: generateAvatar(),
   likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
   message: getRandomArrayElement(COMMENTS),
   name: getRandomArrayElement(RANDOM_NAMES)
 });
-const similarGallery = Array.from({length: CANVAS_SIZE}, createGallery);
-console.log(similarGallery);
+const similarPost = Array.from({length: CANVAS_SIZE}, createPost);
+console.log(similarPost);
