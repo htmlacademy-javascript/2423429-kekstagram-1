@@ -10,6 +10,7 @@ const COMMENTS = [
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
+
 const RANDOM_NAMES = [
   'Хуан',
   'Себастьян',
@@ -30,7 +31,6 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-
 const makeIdGenerator = () =>{
   let countId = 0;
 
@@ -41,28 +41,17 @@ const makeIdGenerator = () =>{
 };
 const generateId = makeIdGenerator();
 
-let countImg = 0;
-const generateAvatar = () => {
-  countImg = countImg + 1;
-  return `photos/${ countImg }.jpg` ;
+const generatePost = () => {
+  const id = generateId();
+
+  return {
+    id,
+    avatar: `photos/${id}.jpg`,
+    likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
+    message: getRandomArrayElement(COMMENTS),
+    name: getRandomArrayElement(RANDOM_NAMES)
+  };
 };
-// const generateAvatar = (generateId) => `photos/${id}.jpg`;
-// const generatePost = (id) => {
-//   const id = generateId();
 
-//  return {
-//      id,
-//      avatar: generateAvatar(id)
-
-//  }
-// }
-
-const createPost = () => ({
-  id: generateId(),
-  avatar: generateAvatar(),
-  likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
-  message: getRandomArrayElement(COMMENTS),
-  name: getRandomArrayElement(RANDOM_NAMES)
-});
-const similarPost = Array.from({length: CANVAS_SIZE}, createPost);
+const similarPost = Array.from({length: CANVAS_SIZE}, generatePost);
 console.log(similarPost);
