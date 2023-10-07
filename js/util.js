@@ -36,3 +36,5 @@ const generatePost = () => {
 
 const similarPost = Array.from({length: CANVAS_SIZE}, generatePost);
 console.log(similarPost);
+
+export {similarPost};

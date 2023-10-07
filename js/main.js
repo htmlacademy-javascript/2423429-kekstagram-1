@@ -1,4 +1,4 @@
 import {CANVAS_SIZE} from './data.js';
-import { generatePost } from './util.js';
+import { similarPost } from './util.js';
 
 
