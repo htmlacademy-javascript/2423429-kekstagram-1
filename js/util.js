@@ -22,4 +22,3 @@ const RANDOM_NAMES = [
   'Вашингтон',
 ];
 export {MIN_LIKES, MAX_LIKES, CANVAS_SIZE, COMMENTS, RANDOM_NAMES};
-//
