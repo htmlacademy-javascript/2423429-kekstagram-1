@@ -1,31 +1,14 @@
+const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+const pictureList = document.querySelector('.pictures');
 
-// Отобразить фотографии других пользователей.
-
-import { similarPost } from "./util";
-
-  // На основе временных данных для разработки и шаблона #picture создайте DOM-элементы, соответствующие фотографиям, и заполните их данными:
-
-  const pictureTemplate = document.querySelector('#picture').content;
-
-  const pictureElem = pictureTemplate.cloneNode(true);
-  console.log(pictureElem);
-
-  const pictureLikes = document.querySelector('.picture__likes');
-  console.log(pictureLikes);
-  //pictureLikes.textContent =
-
-  for (let i = similarPost.length; i > 0; i--) {
-     similarPost[i].avatar;
+export function renderPicture(similarPost) {
+  const similarPostFragment = document.createDocumentFragment();
+  for(let i = 0; i < similarPost.length; i++) {
+    const pictureElem = pictureTemplate.cloneNode(true);
+    pictureElem.querySelector('.picture__img').src = similarPost[i].avatar;
+    pictureElem.querySelector('.picture__likes').textContent = similarPost[i].likes;
+    pictureElem.querySelector('.picture__comments').textContent = similarPost[i].message.length;
+    similarPostFragment.appendChild(pictureElem);
   }
-  // Количество лайков likes выведите в блок .picture__likes.
-
-  // Адрес изображения url подставьте как атрибут src изображения.
-
-  // Количество комментариев comments выведите в блок .picture__comments.
-  // Отрисуйте сгенерированные DOM-элементы в блок .pictures. Для вставки элементов используйте DocumentFragment.
-
-  // Подключите модуль в проект.
-
-// Заведите модуль, который будет отвечать за отрисовку миниатюр.
+  pictureList.appendChild(similarPostFragment);
 }
-export {renderPicture};

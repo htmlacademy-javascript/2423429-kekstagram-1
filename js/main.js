@@ -1,3 +1,5 @@
 import { similarPost } from './util.js';
-import {} from './render-picture.js';
+import { renderPicture } from './render-picture.js';
+
+renderPicture(similarPost);
 
