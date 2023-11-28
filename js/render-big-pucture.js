@@ -1,18 +1,31 @@
-export function renderBigPicture(renderPicture) {
+const commentTemplate = document.querySelector('.social__comment').cloneNode(true);
 
+export function renderBigPicture(pictureElem, similarPost) {
+  const bigPicrute = document.querySelector('.big-picture');
+  const onClick = () => {
+    bigPicrute.classList.remove('hidden');
+    bigPicrute.querySelector('.big-picture__img img').src = similarPost.avatar;
+
+    for(let i = 0; i < similarPost.message.length; i++){
+      const thisComment = commentTemplate.cloneNode(true);
+      bigPicrute.querySelector('.social__comments');
+      
+    }
+  };
+  pictureElem.addEventListener('click', onClick);
 }
-// Реализовать сценарий просмотра фотографий в полноразмерном режиме. В таком режиме пользователь получает несколько дополнительных возможностей: детально рассмотреть изображение, поставить «лайк», почитать комментарии, оставленные другими пользователями.
+// Реализовать сценарий просмотра фотографий в полноразмерном режиме. В таком режиме пользователь получает несколько дополнительных возможностей:
+// детально рассмотреть изображение, поставить «лайк», почитать комментарии, оставленные другими пользователями.
 // Заведите модуль, который будет отвечать за отрисовку окна с полноразмерным изображением.
-
 // Для отображения окна нужно удалять класс hidden у элемента .big-picture и каждый
 // раз заполнять его данными о конкретной фотографии:
-//const bigPicrute = document.querySelector('.big-picture');
-//bigPicrute.classList.remove('.hidden');
+
 
 // Адрес изображения url подставьте как src изображения внутри блока .big-picture__img.
 // Количество лайков likes подставьте как текстовое содержание элемента .likes-count.
 // Количество комментариев comments подставьте как текстовое содержание элемента .comments-count.
-// Список комментариев под фотографией: комментарии должны вставляться в блок .social__comments. Разметка каждого комментария должна выглядеть так:
+// Список комментариев под фотографией: комментарии должны вставляться в блок .social__comments. Разметка каждого
+//комментария должна выглядеть так:
 
 // <li class="social__comment">
 //     <img
