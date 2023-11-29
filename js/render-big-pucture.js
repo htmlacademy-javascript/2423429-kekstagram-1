@@ -12,7 +12,6 @@ export function renderBigPicture(pictureElem, similarPost) {
     bigPicrute.querySelector('.social__caption').textContent = similarPost.description;
     bigPicrute.querySelector('.social__comment-count').classList.add('hidden');
     bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
-    console.log(similarPost);
     for(let i = 0; i < similarPost.message.length; i++){
       const thisComment = commentTemplate.cloneNode(true);
       thisComment.querySelector('.social__picture').src = similarPost.message[i].avatar;
