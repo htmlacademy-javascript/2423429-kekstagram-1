@@ -34,9 +34,9 @@ const generatePost = () => {
     id,
     avatar: `photos/${id}.jpg`,
     likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
-    message: Array.from(10, generateComment),
-    name: getRandomArrayElement(RANDOM_NAMES)
-
+    message: Array.from({length: 10}, generateComment),
+    name: getRandomArrayElement(RANDOM_NAMES),
+    description: 'Привет описание!'
   };
 };
 
