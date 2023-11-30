@@ -12,6 +12,11 @@ const getRandomInteger = (a, b) => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
+const generateComment = () => ({
+  avatar: 'img/avatar-1.svg',
+  message: getRandomArrayElement(COMMENTS),
+  name: getRandomArrayElement(RANDOM_NAMES)
+});
 const makeIdGenerator = () =>{
   let countId = 0;
 
@@ -29,8 +34,9 @@ const generatePost = () => {
     id,
     avatar: `photos/${id}.jpg`,
     likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
-    message: getRandomArrayElement(COMMENTS),
-    name: getRandomArrayElement(RANDOM_NAMES)
+    message: Array.from({length: 10}, generateComment),
+    name: getRandomArrayElement(RANDOM_NAMES),
+    description: 'Привет описание!'
   };
 };
 
