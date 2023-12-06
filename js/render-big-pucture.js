@@ -12,7 +12,7 @@ export function renderBigPicture(pictureElem, Post) {
     bigPicrute.querySelector('.social__caption').textContent = Post.description;
    //bigPicrute.querySelector('.social__comment-count').classList.add('hidden');
    //bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
-    //найти кнопку
+    //отобразил
 
     for(let i = 0; i < Post.message.length; i++){
       const thisComment = commentTemplate.cloneNode(true);
@@ -23,6 +23,7 @@ export function renderBigPicture(pictureElem, Post) {
     }
   };
   const bigPicruteCloseClick = () => {
+    //if(){}
     bigPicrute.classList.add('hidden');
     document.body.classList.remove('.modal-open');
     listComment.innerHTML = '';
@@ -31,5 +32,6 @@ export function renderBigPicture(pictureElem, Post) {
   const bigPicruteClose = bigPicrute.querySelector('.big-picture__cancel');
   bigPicruteClose.addEventListener('click', bigPicruteCloseClick);
   document.addEventListener('keydown', bigPicruteCloseClick);
+
 }
 
