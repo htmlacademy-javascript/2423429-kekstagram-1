@@ -13,6 +13,9 @@ export function renderBigPicture(pictureElem, Post) {
     //bigPicrute.querySelector('.social__comment-count').classList.add('hidden');
     //bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
     //отобразил
+    const buttonAddComment = bigPicrute.querySelector('.social__comments-loader');
+    buttonAddComment.addEventListener('click', onClick);
+    //кнопка добавить еще, нужно доработать
 
     for(let i = 0; i < Post.message.length; i++){
       const thisComment = commentTemplate.cloneNode(true);
