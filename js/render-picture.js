@@ -13,4 +13,6 @@ export function renderPicture(similarPost) {
     renderBigPicture(pictureElem, similarPost[i]);
   }
   pictureList.appendChild(similarPostFragment);
+
 }
+
