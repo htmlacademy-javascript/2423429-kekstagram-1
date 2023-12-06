@@ -10,8 +10,8 @@ export function renderBigPicture(pictureElem, Post) {
     bigPicrute.querySelector('.likes-count').textContent = Post.likes;
     bigPicrute.querySelector('.comments-count').textContent = Post.message.length;
     bigPicrute.querySelector('.social__caption').textContent = Post.description;
-   //bigPicrute.querySelector('.social__comment-count').classList.add('hidden');
-   //bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
+    //bigPicrute.querySelector('.social__comment-count').classList.add('hidden');
+    //bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
     //отобразил
 
     for(let i = 0; i < Post.message.length; i++){
