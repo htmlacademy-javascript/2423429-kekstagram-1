@@ -1,4 +1,4 @@
-const commentTemplate = document.querySelector('.social__comment').cloneNode(true);
+const commentTemplate = document.querySelector('#comment').content.cloneNode(true);
 
 export function renderBigPicture(pictureElem, Post) {
   const bigPicrute = document.querySelector('.big-picture');
@@ -16,14 +16,13 @@ export function renderBigPicture(pictureElem, Post) {
     // const buttonAddComment = bigPicrute.querySelector('.social__comments-loader');
     // buttonAddComment.addEventListener('click', () =>{
     // const hiddenComments = listComment.querySelectorAll('.social__comment.hidden');
-    // console.log(Commentss);
     // });
     //кнопка добавить еще, нужно доработать
-    for(let i = 0; i < Post.message.length; i++){
+    for(let i = 0; i < Post.comments.length; i++){
       const thisComment = commentTemplate.cloneNode(true);
-      thisComment.querySelector('.social__picture').src = Post.message[i].avatar;
-      thisComment.querySelector('.social__picture').alt = Post.message[i].name;
-      thisComment.querySelector('.social__text').textContent = Post.message[i].message;
+      thisComment.querySelector('.social__picture').src = Post.comments[i].avatar;
+      thisComment.querySelector('.social__picture').alt = Post.comments[i].name;
+      thisComment.querySelector('.social__text').textContent = Post.comments[i].message;
       listComment.appendChild(thisComment);
     }
     const commentsArray = listComment.querySelectorAll('.social__comment');

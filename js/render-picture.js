@@ -8,7 +8,7 @@ export function renderPicture(similarPost) {
     const pictureElem = pictureTemplate.cloneNode(true);
     pictureElem.querySelector('.picture__img').src = similarPost[i].avatar;
     pictureElem.querySelector('.picture__likes').textContent = similarPost[i].likes;
-    pictureElem.querySelector('.picture__comments').textContent = similarPost[i].message.length;
+    pictureElem.querySelector('.picture__comments').textContent = similarPost[i].comments.length;
     similarPostFragment.appendChild(pictureElem);
     renderBigPicture(pictureElem, similarPost[i]);
   }
