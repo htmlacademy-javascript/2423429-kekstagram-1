@@ -1,5 +1,5 @@
+import { COMMENTS_BATCH_LENGTH } from './data.js';
 const commentTemplate = document.querySelector('#comment').content.cloneNode(true);
-
 export function renderBigPicture(pictureElem, Post) {
   const bigPicrute = document.querySelector('.big-picture');
   const listComment = bigPicrute.querySelector('.social__comments');
@@ -11,7 +11,6 @@ export function renderBigPicture(pictureElem, Post) {
         comment.classList.remove('hidden');
       }
     });
-
     const comments = bigPicrute.querySelectorAll('.social__comment'); //TODO: тоже самое
     let counter = 0;
     comments.forEach((comment)=> {
@@ -42,7 +41,7 @@ export function renderBigPicture(pictureElem, Post) {
       thisComment.querySelector('.social__picture').src = Post.comments[i].avatar;
       thisComment.querySelector('.social__picture').alt = Post.comments[i].name;
       thisComment.querySelector('.social__text').textContent = Post.comments[i].message;
-      if(i >= 5){ //TODO: вынести в константу COMMENTS_BATCH_LENGTH
+      if(i >= COMMENTS_BATCH_LENGTH){ //TODO: вынести в константу COMMENTS_BATCH_LENGTH
         thisComment.querySelector('.social__comment').classList.add('hidden');
       }
       listComment.appendChild(thisComment);

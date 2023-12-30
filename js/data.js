@@ -1,6 +1,7 @@
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
 const CANVAS_SIZE = 25;
+const COMMENTS_BATCH_LENGTH = 5;
 
 const COMMENTS = [
   'Всё отлично!',
@@ -21,4 +22,4 @@ const RANDOM_NAMES = [
   'Люпита',
   'Вашингтон',
 ];
-export {MIN_LIKES, MAX_LIKES, CANVAS_SIZE, COMMENTS, RANDOM_NAMES};
+export {MIN_LIKES, MAX_LIKES, CANVAS_SIZE, COMMENTS, RANDOM_NAMES, COMMENTS_BATCH_LENGTH};
