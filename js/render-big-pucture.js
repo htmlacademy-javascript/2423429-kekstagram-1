@@ -7,7 +7,7 @@ export function renderBigPicture(pictureElem, Post) {
   const onLoaderCommentClick = () =>{
     const hiddenComments = listComment.querySelectorAll('.social__comment.hidden');
     hiddenComments.forEach((comment, i) =>{
-      if(i < 5){
+      if(i < COMMENTS_BATCH_LENGTH){
         comment.classList.remove('hidden');
       }
     });
