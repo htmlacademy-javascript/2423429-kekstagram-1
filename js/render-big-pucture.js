@@ -1,5 +1,22 @@
 import { COMMENTS_BATCH_LENGTH } from './data.js';
+
 const commentTemplate = document.querySelector('#comment').content.cloneNode(true);
+
+function makeCounter (comments) {
+
+  let counter = 0;
+  return function () {
+
+    comments.forEach((comment)=> {
+      if(!comment.classList.contains('hidden')){
+        counter++;
+
+      }
+    });
+    return counter;
+  };
+}
+
 export function renderBigPicture(pictureElem, Post) {
   const bigPicrute = document.querySelector('.big-picture');
   const listComment = bigPicrute.querySelector('.social__comments');
@@ -11,18 +28,17 @@ export function renderBigPicture(pictureElem, Post) {
         comment.classList.remove('hidden');
       }
     });
+
     const comments = bigPicrute.querySelectorAll('.social__comment'); //TODO: тоже самое
-    let counter = 0;
-    comments.forEach((comment)=> {
-      if(!comment.classList.contains('hidden')){
-        counter++;
-      }
-    });
-    if (counter === Array.from(comments).length){
+
+    const commentsCounter = makeCounter(comments)();
+
+    if (commentsCounter === Array.from(comments).length){
       bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
     }
+    bigPicrute.querySelector('.comments-count-visible').textContent = commentsCounter;
     // let comments = visibleComments.filter((comment) => !comment.classList.contains('hidden')).length;
-    bigPicrute.querySelector('.comments-count-visible').textContent = counter;
+
   };
   const showBigPicture = () => {
     bigPicrute.querySelector('.social__comments-loader').classList.remove('hidden');
@@ -48,12 +64,8 @@ export function renderBigPicture(pictureElem, Post) {
 
     }
     const secondListComments = bigPicrute.querySelectorAll('.social__comment'); //TODO: тоже самое
-    let secondCounter = 0;
-    secondListComments.forEach((comment)=> {
-      if(!comment.classList.contains('hidden')){
-        secondCounter++;
-      }
-    });
+    const secondCounter = makeCounter(secondListComments)();
+
     bigPicrute.querySelector('.comments-count-visible').textContent = secondCounter;
 
   };
