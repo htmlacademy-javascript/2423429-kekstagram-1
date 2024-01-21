@@ -1,5 +1,6 @@
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
-hashtag.test('#keks');
+
+//
 
 const editPhoto = document.querySelector('.img-upload__overlay');
 
@@ -15,5 +16,7 @@ closeUploadButton.addEventListener('click', ()=>{
 
 const uploadPicture = document.querySelector('.img-upload__preview img');
 const Inputt = document.querySelector('.img-upload__start');
-const setPicture = Inputt.querySelector('.img-upload__input').value;
+const setPicture = Inputt.querySelector('.img-upload__input').textContent;
+console.log(uploadPicture);
 console.log(setPicture);
+
