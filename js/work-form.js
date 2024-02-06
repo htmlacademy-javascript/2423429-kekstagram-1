@@ -1,32 +1,46 @@
 
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
 
- const orderForm = document.querySelector('.form');
-console.log(orderForm);
-
-// const pristine = new Pristine(orderForm, {
-//   classTo: 'form__item',
-//   errorClass: 'form__item--invalid',
-//   successClass: 'form__item--valid',
-//   errorTextParent: 'form__item',
-//   errorTextTag: 'span',
-//   errorTextClass: 'form__error'
-// });
+const orderForm = document.querySelector('.img-upload__form');
 
 
-// pristine.addValidator(orderForm.querySelector('##upload-file'));
+const pristine = new Pristine(orderForm, {
+  classTo: 'img-upload__form',
+  errorClass: 'error',
+  successClass: 'success',
+  errorTextParent: 'img-upload__wrapper',
+  errorTextTag: 'span',
+  errorTextClass: 'form__error'
+});
 
 
-// orderForm.addEventListener('submit', (evt) => {
-//   evt.preventDefault();
-//   pristine.validate();
-// });
+pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
 
+  //TODO: должен быть код, который проверяет валидацию хештега
+  // if (value === hashtag){
+  //   return true;
+  // }
+  // return false;
+  if (value.length && value[0] === value[0].toUpperCase()){
+    return true;
+  }
+  return false;
+}, 'unValid');
+//TODO: 140 символов для коментария лимит, или через html атрибуты или через валидатор по аналогии выше
+
+orderForm.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  pristine.validate();
+});
 
 const editPhoto = document.querySelector('.img-upload__overlay');
+const changePhoto = document.querySelector('.img-upload__input');
 
-editPhoto.classList.remove('hidden');
-document.body.classList.add('modal-open');
+changePhoto.addEventListener('change', () =>{
+  editPhoto.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+
+});
 
 const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
 

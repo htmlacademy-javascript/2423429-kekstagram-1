@@ -29,7 +29,7 @@ export function renderBigPicture(pictureElem, Post) {
       }
     });
 
-    const comments = bigPicrute.querySelectorAll('.social__comment'); //TODO: тоже самое
+    const comments = bigPicrute.querySelectorAll('.social__comment');
 
     const commentsCounter = makeCounter(comments)();
 
@@ -37,7 +37,6 @@ export function renderBigPicture(pictureElem, Post) {
       bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
     }
     bigPicrute.querySelector('.comments-count-visible').textContent = commentsCounter;
-    // let comments = visibleComments.filter((comment) => !comment.classList.contains('hidden')).length;
 
   };
   const showBigPicture = () => {
@@ -51,19 +50,18 @@ export function renderBigPicture(pictureElem, Post) {
 
     buttonAddComment.addEventListener('click', onLoaderCommentClick);
 
-    //кнопка добавить еще, нужно доработать
     for(let i = 0; i < Post.comments.length; i++){
       const thisComment = commentTemplate.cloneNode(true);
       thisComment.querySelector('.social__picture').src = Post.comments[i].avatar;
       thisComment.querySelector('.social__picture').alt = Post.comments[i].name;
       thisComment.querySelector('.social__text').textContent = Post.comments[i].message;
-      if(i >= COMMENTS_BATCH_LENGTH){ //TODO: вынести в константу COMMENTS_BATCH_LENGTH
+      if(i >= COMMENTS_BATCH_LENGTH){
         thisComment.querySelector('.social__comment').classList.add('hidden');
       }
       listComment.appendChild(thisComment);
 
     }
-    const secondListComments = bigPicrute.querySelectorAll('.social__comment'); //TODO: тоже самое
+    const secondListComments = bigPicrute.querySelectorAll('.social__comment');
     const secondCounter = makeCounter(secondListComments)();
 
     bigPicrute.querySelector('.comments-count-visible').textContent = secondCounter;
