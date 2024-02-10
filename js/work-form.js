@@ -1,5 +1,5 @@
 
-const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
+const HASHTAG_VALID_REGEX = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const orderForm = document.querySelector('.img-upload__form');
 
@@ -17,6 +17,7 @@ const pristine = new Pristine(orderForm, {
 pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
 
   //TODO: должен быть код, который проверяет валидацию хештега
+  console.log(HASHTAG_VALID_REGEX.test(value));
   // if (value === hashtag){
   //   return true;
   // }
@@ -48,8 +49,3 @@ closeUploadButton.addEventListener('click', ()=>{
   editPhoto.classList.add('hidden');
   document.body.classList.remove('modal-open');
 });
-
-const uploadPicture = document.querySelector('.img-upload__preview img');
-const Inputt = document.querySelector('.img-upload__start');
-const setPicture = Inputt.querySelector('.img-upload__input').textContent;
-
