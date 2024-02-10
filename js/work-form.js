@@ -3,7 +3,6 @@ const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const orderForm = document.querySelector('.img-upload__overlay');
 
-
 const pristine = new Pristine(orderForm, {
   classTo: 'img-upload__form',
   errorClass: 'error',
@@ -13,16 +12,12 @@ const pristine = new Pristine(orderForm, {
   errorTextClass: 'form__error'
 });
 
-
 pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
 
   //TODO: должен быть код, который проверяет валидацию хештега
-  // if (value === hashtag){
-  //   return true;
-  // }
-  // return false;
-  if (value.length && value[0] === value[0].toUpperCase()){
-    return console.log(true);
+
+  if (hashtag.test(value)){
+    return true;
   }
   return false;
 }, 'unValid');
