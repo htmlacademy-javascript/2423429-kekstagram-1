@@ -13,6 +13,30 @@ const pristine = new Pristine(orderForm, {
 });
 
 pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
+  const hashtagString = value;
+  const hashtagArray = hashtagString.split(' ');
+  const testHashtag = function () {
+
+    function hasDuplicates() {
+      const valuesSoFar = Object.create(null);
+      console.log(valuesSoFar,'сейчас в объекте');
+      for (let i = 0; i < hashtagArray.length; i++) {
+        const thisHashtag = hashtagArray[i];
+        if (thisHashtag in valuesSoFar) {
+          return console.log(false, 'повторяется');
+        }
+        valuesSoFar[thisHashtag] = true;
+      }
+      return console.log(true, 'не повторяется');
+    }
+    hasDuplicates(hashtagArray);
+    console.log('количество хэштегов' , hashtagArray.length);
+  };
+  testHashtag(hashtagArray);
+
+  if (hashtagArray.length > 7){
+    return console.log(false, 'больше 7 элементов');
+  }
 
   //TODO: должен быть код, который проверяет валидацию хештега
 
@@ -43,8 +67,4 @@ closeUploadButton.addEventListener('click', ()=>{
   editPhoto.classList.add('hidden');
   document.body.classList.remove('modal-open');
 });
-
-const uploadPicture = document.querySelector('.img-upload__preview img');
-const Inputt = document.querySelector('.img-upload__start');
-const setPicture = Inputt.querySelector('.img-upload__input').textContent;
 
