@@ -8,7 +8,8 @@ export function scalePicture (){
   //напишите код который позволит пользователю редактировать масштаб изображения
   const clickSmaller = () => {
     buttonScaleBigger.disabled = false;
-    scaleControl.value = thisScale -= STEP;
+    thisScale -= STEP;
+    scaleControl.value = thisScale;
     scaleControl.value = `${thisScale}%`;
     if(thisScale === 25){
       buttonScaleSmaller.disabled = true;
@@ -21,7 +22,8 @@ export function scalePicture (){
 
   const clickBigger = () => {
     buttonScaleSmaller.disabled = false;
-    scaleControl.value = thisScale += STEP;
+    thisScale += STEP;
+    scaleControl.value = thisScale;
     scaleControl.value = `${thisScale}%`;
     if (thisScale === 100) {
       buttonScaleBigger.disabled = true;
