@@ -1,4 +1,4 @@
-import { STEP } from './scale.js';
+import { scalePicture } from './scale.js';
 
 const editPhoto = document.querySelector('.img-upload__overlay');
 const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
@@ -68,32 +68,5 @@ setComment.addEventListener('keydown', (evt)=>{
   }
 });
 
-const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
-const buttonScaleBigger = document.querySelector('.scale__control--bigger');
-const scaleControl = document.querySelector('.scale__control--value');
-let thisScale = scaleControl.value.replace(/%/, '');
-//напишите код который позволит пользователю редактировать масштаб изображения
-const clickSmaller = () => {
-  buttonScaleBigger.disabled = false;
-  scaleControl.value = thisScale -= STEP;
-  scaleControl.value = `${scaleControl.value }%`;
-  if(thisScale === 0){
-    buttonScaleSmaller.disabled = true;
-  } else {
-    buttonScaleSmaller.disabled = false;
-  }
-};
-buttonScaleSmaller.addEventListener('click', clickSmaller);
-
-const clickBigger = () => {
-  buttonScaleSmaller.disabled = false;
-  scaleControl.value = thisScale += STEP;
-  scaleControl.value = `${scaleControl.value }%`;
-  if (thisScale === 100) {
-    buttonScaleBigger.disabled = true;
-  } else {
-    buttonScaleBigger.disabled = false;
-  }
-};
-buttonScaleBigger.addEventListener('click', clickBigger);
+scalePicture();
 
