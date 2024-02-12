@@ -66,3 +66,22 @@ setComment.addEventListener('keydown', (evt)=>{
   }
 });
 
+const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
+const buttonScaleBigger = document.querySelector('.scale__control--bigger');
+const scaleControl = document.querySelector('.scale__control--value');
+buttonScaleSmaller.addEventListener('click', ()=>{
+//напишите код который позволит пользователю редактировать масштаб изображения
+  let thisScale = scaleControl.value.replace(/%/, '');
+  //console.log(thisScale);
+  //console.log(scaleControl.value);
+  if(thisScale >= 100){
+    buttonScaleBigger.disabled = true;
+  }
+  if(thisScale <= 0){
+    buttonScaleSmaller.disabled = true;
+  } else{
+    thisScale = thisScale - 25;
+    scaleControl.value = `${thisScale}%`;
+  }
+});
+
