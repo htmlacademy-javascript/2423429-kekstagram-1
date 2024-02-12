@@ -51,7 +51,7 @@ const EFFECTS = [
 ];
 
 const DEFAULT_EFFECT = EFFECTS[0];
-const chosenEffect = DEFAULT_EFFECT;
+let chosenEffect = DEFAULT_EFFECT;
 
 const imageElement = document.querySelector('.img-upload__preview img');
 const effectsElement = document.querySelector('.effects');
@@ -111,15 +111,15 @@ const resetEffects = () => {
 noUiSlider.create(sliderElement, {
   range: {
     min: DEFAULT_EFFECT.min,
-    max:  DEFAULT_EFFECT.max,
+    max: DEFAULT_EFFECT.max,
   },
-  start: DEFAULT_EFFECT.max,
   step: DEFAULT_EFFECT.step,
+  start: DEFAULT_EFFECT.max,
   connect: 'lower',
 });
 hideSlider();
 
-effectLevelElement.addEventListener('change', onEffectsChange);
+effectsElement.addEventListener('change', onEffectsChange);
 sliderElement.noUiSlider.on('update', onSliderUpdate);
 
 export { resetEffects };
