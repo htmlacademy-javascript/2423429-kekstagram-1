@@ -1,5 +1,5 @@
 import { scalePicture } from './scale.js';
-import './effects.js';
+import { changeEffects } from './effects.js';
 const editPhoto = document.querySelector('.img-upload__overlay');
 const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
 const changePhoto = document.querySelector('.img-upload__input');
@@ -69,4 +69,5 @@ setComment.addEventListener('keydown', (evt)=>{
 });
 
 scalePicture();
+changeEffects();
 
