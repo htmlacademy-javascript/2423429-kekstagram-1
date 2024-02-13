@@ -1,3 +1,8 @@
+import { scalePicture } from './scale.js';
+
+const editPhoto = document.querySelector('.img-upload__overlay');
+const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
+const changePhoto = document.querySelector('.img-upload__input');
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
 const orderForm = document.querySelector('.img-upload__overlay');
 const pristine = new Pristine(orderForm, {
@@ -39,15 +44,29 @@ orderForm.addEventListener('submit', (evt) => {
   pristine.validate();
 });
 
-const editPhoto = document.querySelector('.img-upload__overlay');
-const changePhoto = document.querySelector('.img-upload__input');
 changePhoto.addEventListener('change', () =>{
   editPhoto.classList.remove('hidden');
   document.body.classList.add('modal-open');
 });
-
-const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
-closeUploadButton.addEventListener('click', ()=>{
+const closeForm = ()=>{
+  closeUploadButton.removeEventListener('click', closeForm);
   editPhoto.classList.add('hidden');
   document.body.classList.remove('modal-open');
+};
+closeUploadButton.addEventListener('click', closeForm);
+document.addEventListener('keydown', (evt)=>{
+  if(evt.key === 'Escape') {
+    closeForm();
+  }
 });
+const setComment = document.querySelector('.text__description');
+
+setComment.addEventListener('keydown', (evt)=>{
+  if(evt.key === 'Escape') {
+    setComment.blur();
+    evt.stopPropagation();
+  }
+});
+scalePicture();
+
+
