@@ -6,7 +6,7 @@ export function renderPicture(similarPost) {
   const similarPostFragment = document.createDocumentFragment();
   for(let i = 0; i < similarPost.length; i++) {
     const pictureElem = pictureTemplate.cloneNode(true);
-    pictureElem.querySelector('.picture__img').src = similarPost[i].avatar;
+    pictureElem.querySelector('.picture__img').src = similarPost[i].url;
     pictureElem.querySelector('.picture__likes').textContent = similarPost[i].likes;
     pictureElem.querySelector('.picture__comments').textContent = similarPost[i].comments.length;
     similarPostFragment.appendChild(pictureElem);
