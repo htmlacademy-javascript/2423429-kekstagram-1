@@ -33,7 +33,7 @@ export function renderBigPicture(pictureElem, Post) {
 
     const commentsCounter = makeCounter(comments)();
 
-    if (commentsCounter === Array.from(comments).length){
+    if (commentsCounter === Array.from(comments).length){ //TODO: добавить проверку комментариев при открытии формы просмотра фотографии
       bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
     }
     bigPicrute.querySelector('.comments-count-visible').textContent = commentsCounter;
@@ -43,7 +43,7 @@ export function renderBigPicture(pictureElem, Post) {
     bigPicrute.querySelector('.social__comments-loader').classList.remove('hidden');
     bigPicrute.classList.remove('hidden');
     document.body.classList.add('.modal-open');
-    bigPicrute.querySelector('.big-picture__img img').src = Post.avatar;
+    bigPicrute.querySelector('.big-picture__img img').src = Post.url;
     bigPicrute.querySelector('.likes-count').textContent = Post.likes;
     bigPicrute.querySelector('.social__caption').textContent = Post.description;
     bigPicrute.querySelector('.comments-count').textContent = Post.comments.length;
