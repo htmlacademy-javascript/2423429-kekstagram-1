@@ -1,4 +1,4 @@
-const EFFECTS = [
+const EFFECTS = [ //TODO: вынести в CONST.JS
   {
     name: 'none',
     style: 'none',

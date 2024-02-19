@@ -42,6 +42,7 @@ pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
 orderForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
+  //TODO: вызываю функцию отпраки валидных значений на сервер
 });
 
 changePhoto.addEventListener('change', () =>{

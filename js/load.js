@@ -9,7 +9,7 @@ const showError = () => {
 };
 
 
-export const getPosts = () => fetch('https://28.javascript.htlacademy.pro/kekstagram/data')
+export const getPosts = () => fetch('https://28.javascript.htmlacademy.pro/kekstagram/data') //TODO: вынести переменную
   .then((response) => {
     if (response.ok) {
       return response;
@@ -18,6 +18,6 @@ export const getPosts = () => fetch('https://28.javascript.htlacademy.pro/keksta
     throw new Error(`${response.status} — ${response.statusText}`);
   })
   .then((response) => response.json())
-  .catch((error) => showError());
+  .catch(() => showError());
 
 

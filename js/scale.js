@@ -1,4 +1,4 @@
-const STEP = 25;
+const STEP = 25;// TODO: вынести в CONST.JS
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const SCALE_DEVIDER = 100;
@@ -10,6 +10,7 @@ const imgUploadPreview = document.querySelector('.img-upload__preview img');
 export const scalePicture = () => {
   buttonScaleBigger.disabled = true;
   //напишите код который позволит пользователю редактировать масштаб изображения
+  //TODO: постараться сделать 1 функцией
   const clickSmaller = () => {
     let thisScale = parseInt(scaleControl.value, 10);
     buttonScaleBigger.disabled = false;

@@ -33,7 +33,7 @@ export function renderBigPicture(pictureElem, Post) {
 
     const commentsCounter = makeCounter(comments)();
 
-    if (commentsCounter === Array.from(comments).length){
+    if (commentsCounter === Array.from(comments).length){ //TODO: добавить проверку комментариев при открытии формы просмотра фотографии
       bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
     }
     bigPicrute.querySelector('.comments-count-visible').textContent = commentsCounter;
