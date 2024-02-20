@@ -39,9 +39,6 @@ export const outPost = (formData) => {
     'https://28.javascript.htmlacademy.pro/kekstagram/',
     {
       method: 'POST',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
       body: formData,
     })
     .then((response) => {
