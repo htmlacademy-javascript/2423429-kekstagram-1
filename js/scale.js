@@ -1,7 +1,4 @@
-const STEP = 25;// TODO: вынести в CONST.JS
-const MIN_SCALE = 25;
-const MAX_SCALE = 100;
-const SCALE_DEVIDER = 100;
+import {STEP, MIN_SCALE, MAX_SCALE, SCALE_DEVIDER} from './const.js';
 const buttonScaleSmaller = document.querySelector('.scale__control--smaller');
 const buttonScaleBigger = document.querySelector('.scale__control--bigger');
 const scaleControl = document.querySelector('.scale__control--value');

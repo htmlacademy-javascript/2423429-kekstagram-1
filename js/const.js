@@ -1,8 +1,9 @@
-//TODO: переименовать файл в CONST.js
-
 const COMMENTS_BATCH_LENGTH = 5;
 
-
+const STEP = 25;// TODO: вынести в CONST.JS
+const MIN_SCALE = 25;
+const MAX_SCALE = 100;
+const SCALE_DEVIDER = 100;
 const EFFECTS = [ //TODO: вынести в CONST.JS
   {
     name: 'none',
@@ -58,4 +59,4 @@ const EFFECTS = [ //TODO: вынести в CONST.JS
 const SERVER_ADDRESS = 'https://28.javascript.htmlacademy.pro/kekstagram/data';
 
 
-export {COMMENTS_BATCH_LENGTH, EFFECTS, SERVER_ADDRESS};
+export {COMMENTS_BATCH_LENGTH, EFFECTS, SERVER_ADDRESS, STEP, MIN_SCALE, MAX_SCALE, SCALE_DEVIDER};
