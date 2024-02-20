@@ -1,4 +1,4 @@
-import { COMMENTS_BATCH_LENGTH } from './data.js';
+import { COMMENTS_BATCH_LENGTH } from './const.js';
 
 const commentTemplate = document.querySelector('#comment').content.cloneNode(true);
 
