@@ -41,14 +41,27 @@ pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
 }, 'хэштеги должны быть уникальными, начинаться с #, длинна не больше 20 символов');
 orderForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
+
 
   const isValid = pristine.validate();
   //TODO: вызываю функцию отпраки валидных значений на сервер
   if (isValid) {
     const formData = new FormData(evt.target);
-    fetch(
-      'https://28.javascript.htmlacademy.pro/kekstagram/data',
+
+
+    const createSuccessMessage = document.querySelector('#success').content.querySelector('.success');
+    const showSuccess = () => {
+      const newSuccess = createSuccessMessage.cloneNode(true);
+      document.body.appendChild(newSuccess);
+      const trySuccessButton = newSuccess.querySelector('.success__button');
+      trySuccessButton.addEventListener('click', ()=>{
+        newSuccess.remove();
+      });
+    };
+
+
+    const outPost = () => fetch(
+      'https://28.javascript.htmlacademy.pro/kekstagram/',
       {
         method: 'POST',
         headers: {
@@ -56,8 +69,17 @@ orderForm.addEventListener('submit', (evt) => {
         },
         body: JSON.stringify(formData),
       })
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        }
+
+        throw new Error(`${response.status} — ${response.statusText}`);
+      })
       .then((response) => response.json())
-      .then((json) => console.log(json));
+      .catch(() => showSuccess());
+
+    outPost();
   }
 });
 

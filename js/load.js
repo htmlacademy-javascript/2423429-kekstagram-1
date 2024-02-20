@@ -19,3 +19,5 @@ export const getPosts = () => fetch(SERVER_ADDRESS)
   })
   .then((response) => response.json())
   .catch(() => showError());
+
+  
