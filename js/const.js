@@ -1,10 +1,10 @@
+const SERVER_ADDRESS = 'https://28.javascript.htmlacademy.pro/kekstagram/data';
 const COMMENTS_BATCH_LENGTH = 5;
-
-const STEP = 25;// TODO: вынести в CONST.JS
+const STEP = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const SCALE_DEVIDER = 100;
-const EFFECTS = [ //TODO: вынести в CONST.JS
+const EFFECTS = [
   {
     name: 'none',
     style: 'none',
@@ -55,8 +55,5 @@ const EFFECTS = [ //TODO: вынести в CONST.JS
   },
 
 ];
-
-const SERVER_ADDRESS = 'https://28.javascript.htmlacademy.pro/kekstagram/data';
-
 
 export {COMMENTS_BATCH_LENGTH, EFFECTS, SERVER_ADDRESS, STEP, MIN_SCALE, MAX_SCALE, SCALE_DEVIDER};

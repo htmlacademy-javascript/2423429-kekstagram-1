@@ -11,7 +11,6 @@ const effectLevelElement = document.querySelector('.effect-level__value');
 
 const isDefault = () => chosenEffect === DEFAULT_EFFECT;
 
-
 const showSlider = () =>{
   sliderContainerElement.classList.remove('hidden');
 };

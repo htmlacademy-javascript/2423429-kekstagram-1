@@ -9,7 +9,6 @@ const showError = () => {
   });
 };
 
-
 export const getPosts = () => fetch(SERVER_ADDRESS) //TODO: вынести переменную
   .then((response) => {
     if (response.ok) {
@@ -20,5 +19,3 @@ export const getPosts = () => fetch(SERVER_ADDRESS) //TODO: вынести пе�
   })
   .then((response) => response.json())
   .catch(() => showError());
-
-
