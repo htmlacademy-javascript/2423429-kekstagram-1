@@ -1,10 +1,14 @@
 import { scalePicture, resetScale, } from './scale.js';
 import { setDefaultEffect } from './effects.js';
+import { outPost } from './load.js';
 const editPhoto = document.querySelector('.img-upload__overlay');
 const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
 const changePhoto = document.querySelector('.img-upload__input');
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
 const orderForm = document.querySelector('.img-upload__overlay');
+
+const imageUploadForm = document.querySelector('.img-upload__form');
+
 const pristine = new Pristine(orderForm, {
   classTo: 'img-upload__form',
   errorClass: 'pristin_error',
@@ -39,10 +43,14 @@ pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
   }
   return true;
 }, 'хэштеги должны быть уникальными, начинаться с #, длинна не больше 20 символов');
-orderForm.addEventListener('submit', (evt) => {
+
+imageUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
-  //TODO: вызываю функцию отпраки валидных значений на сервер
+  const isValid = pristine.validate();
+  if (isValid) {
+    const formData = new FormData(evt.target);
+    outPost(formData);
+  }
 });
 
 changePhoto.addEventListener('change', () =>{
