@@ -23,7 +23,7 @@ const makeScaleClickHandler = (isNegative, scaleThreshold) => function () {
     buttonScaleBigger.disabled = false;
   }
   if (thisScale === MAX_SCALE) {
-    buttonScaleSmaller.disabled = true;
+    buttonScaleSmaller.disabled = false;
   }
   imgUploadPreview.style.transform = `scale(${thisScale / SCALE_DEVIDER})`;
 };
