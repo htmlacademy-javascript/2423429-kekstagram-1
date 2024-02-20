@@ -1,3 +1,4 @@
+import { SERVER_ADDRESS } from './const.js';
 const createErrorMessage = document.querySelector('#error').content.querySelector('.error');
 const showError = () => {
   const newError = createErrorMessage.cloneNode(true);
@@ -8,8 +9,7 @@ const showError = () => {
   });
 };
 
-
-export const getPosts = () => fetch('https://28.javascript.htmlacademy.pro/kekstagram/data') //TODO: вынести переменную
+export const getPosts = () => fetch(SERVER_ADDRESS)
   .then((response) => {
     if (response.ok) {
       return response;
@@ -19,5 +19,3 @@ export const getPosts = () => fetch('https://28.javascript.htmlacademy.pro/kekst
   })
   .then((response) => response.json())
   .catch(() => showError());
-
-
