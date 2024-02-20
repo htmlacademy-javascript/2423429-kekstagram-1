@@ -42,7 +42,23 @@ pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
 orderForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
+
+  const isValid = pristine.validate();
   //TODO: вызываю функцию отпраки валидных значений на сервер
+  if (isValid) {
+    const formData = new FormData(evt.target);
+    fetch(
+      'https://28.javascript.htmlacademy.pro/kekstagram/data',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  }
 });
 
 changePhoto.addEventListener('change', () =>{
