@@ -9,7 +9,7 @@ const showError = () => {
   });
 };
 
-export const getPosts = () => fetch(SERVER_ADDRESS) //TODO: вынести переменную
+export const getPosts = () => fetch(SERVER_ADDRESS)
   .then((response) => {
     if (response.ok) {
       return response;
