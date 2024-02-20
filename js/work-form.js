@@ -1,10 +1,14 @@
 import { scalePicture, resetScale, } from './scale.js';
 import { setDefaultEffect } from './effects.js';
+import { outPost } from './load.js';
 const editPhoto = document.querySelector('.img-upload__overlay');
 const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
 const changePhoto = document.querySelector('.img-upload__input');
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
 const orderForm = document.querySelector('.img-upload__overlay');
+
+const imageUploadForm = document.querySelector('.img-upload__form');
+
 const pristine = new Pristine(orderForm, {
   classTo: 'img-upload__form',
   errorClass: 'pristin_error',
@@ -39,47 +43,13 @@ pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
   }
   return true;
 }, 'хэштеги должны быть уникальными, начинаться с #, длинна не больше 20 символов');
-orderForm.addEventListener('submit', (evt) => {
+
+imageUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-
-
   const isValid = pristine.validate();
-  //TODO: вызываю функцию отпраки валидных значений на сервер
   if (isValid) {
     const formData = new FormData(evt.target);
-
-
-    const createSuccessMessage = document.querySelector('#success').content.querySelector('.success');
-    const showSuccess = () => {
-      const newSuccess = createSuccessMessage.cloneNode(true);
-      document.body.appendChild(newSuccess);
-      const trySuccessButton = newSuccess.querySelector('.success__button');
-      trySuccessButton.addEventListener('click', ()=>{
-        newSuccess.remove();
-      });
-    };
-
-
-    const outPost = () => fetch(
-      'https://28.javascript.htmlacademy.pro/kekstagram/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        }
-
-        throw new Error(`${response.status} — ${response.statusText}`);
-      })
-      .then((response) => response.json())
-      .catch(() => showSuccess());
-
-    outPost();
+    outPost(formData);
   }
 });
 
