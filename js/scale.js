@@ -12,7 +12,6 @@ const makeScaleClickHandler = (isNegative, scaleThreshold) => function () {
   } else {
     thisScale += STEP;
   }
-  scaleControl.value = thisScale;
   scaleControl.value = `${thisScale}%`;
   if(thisScale === scaleThreshold){ //TODO: если отрабатывает полностью, блокирует кнопки, нужно подумать как обработать ситуацию когда покликал до минимума и до максимума
     this.disabled = true;
