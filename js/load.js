@@ -10,7 +10,7 @@ const showError = () => {
   });
 };
 
-export const getPosts = () => fetch(SERVER_ADDRESS)
+export const getPosts = () => fetch(`${SERVER_ADDRESS}data`)
   .then((response) => {
     if (response.ok) {
       return response;
@@ -36,7 +36,7 @@ const showSuccess = () => {
 export const outPost = (formData) => {
   submitFormData.disabled = true;
   return fetch(
-    'https://28.javascript.htmlacademy.pro/kekstagram/',
+    SERVER_ADDRESS,
     {
       method: 'POST',
       body: formData,

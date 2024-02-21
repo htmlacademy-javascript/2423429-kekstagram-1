@@ -1,4 +1,4 @@
-const SERVER_ADDRESS = 'https://28.javascript.htmlacademy.pro/kekstagram/data';
+const SERVER_ADDRESS = 'https://28.javascript.htmlacademy.pro/kekstagram/';
 const COMMENTS_BATCH_LENGTH = 5;
 const STEP = 25;
 const MIN_SCALE = 25;
