@@ -1,6 +1,9 @@
 import { SERVER_ADDRESS } from './const.js';
+
 const createErrorMessage = document.querySelector('#error').content.querySelector('.error');
+const createSuccessMessage = document.querySelector('#success').content.querySelector('.success');
 const submitFormData = document.querySelector('.img-upload__submit');
+
 const showError = () => {
   const newError = createErrorMessage.cloneNode(true);
   document.body.appendChild(newError);
@@ -10,7 +13,7 @@ const showError = () => {
   });
 };
 
-export const getPosts = () => fetch(`${SERVER_ADDRESS}data`)
+export const getPosts = () => fetch(`${SERVER_ADDRESS}/data`)
   .then((response) => {
     if (response.ok) {
       return response;
@@ -21,8 +24,6 @@ export const getPosts = () => fetch(`${SERVER_ADDRESS}data`)
   .then((response) => response.json())
   .catch(() => showError());
 
-
-const createSuccessMessage = document.querySelector('#success').content.querySelector('.success');
 const showSuccess = () => {
   const newSuccess = createSuccessMessage.cloneNode(true);
   document.body.appendChild(newSuccess);
