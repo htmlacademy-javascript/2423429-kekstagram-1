@@ -4,12 +4,37 @@ const createErrorMessage = document.querySelector('#error').content.querySelecto
 const createSuccessMessage = document.querySelector('#success').content.querySelector('.success');
 const submitFormData = document.querySelector('.img-upload__submit');
 
-const showError = () => {
-  const newError = createErrorMessage.cloneNode(true);
-  document.body.appendChild(newError);
-  const tryErrorButton = newError.querySelector('.error__button');
-  tryErrorButton.addEventListener('click', ()=>{
-    newError.remove();
+
+// const showError = () => {
+//   const newError = createErrorMessage.cloneNode(true);
+//   document.body.appendChild(newError);
+//   const tryErrorButton = newError.querySelector('.error__button');
+//   tryErrorButton.addEventListener('click', ()=>{
+//     newError.remove();
+//   });
+// };
+
+// const showSuccess = () => {
+//   const newSuccess = createSuccessMessage.cloneNode(true);
+//   document.body.appendChild(newSuccess);
+//   const trySuccessButton = newSuccess.querySelector('.success__button');
+//   trySuccessButton.addEventListener('click', ()=>{
+
+//     newSuccess.remove();
+//   });
+// };
+
+const showStatus = (isPositive) => {
+  if (isPositive) {
+    const newMessage = createSuccessMessage.cloneNode(true);
+    const MessageButton = newMessage.querySelector('.success__button');
+  } else{
+    newMessage = createErrorMessage.cloneNode(true);
+    MessageButton = newMessage.querySelector('.error__button');
+  }
+  document.body.appendChild(newMessage);
+  MessageButton.addEventListener('click', ()=> {
+    newMessage.remove();
   });
 };
 
@@ -22,17 +47,7 @@ export const getPosts = () => fetch(`${SERVER_ADDRESS}/data`)
     throw new Error(`${response.status} — ${response.statusText}`);
   })
   .then((response) => response.json())
-  .catch(() => showError());
-
-const showSuccess = () => {
-  const newSuccess = createSuccessMessage.cloneNode(true);
-  document.body.appendChild(newSuccess);
-  const trySuccessButton = newSuccess.querySelector('.success__button');
-  trySuccessButton.addEventListener('click', ()=>{
-
-    newSuccess.remove();
-  });
-};
+  .catch(() => showStatus(false));
 
 export const outPost = (formData) => {
   submitFormData.disabled = true;
@@ -44,13 +59,13 @@ export const outPost = (formData) => {
     })
     .then((response) => {
       if (response.ok) {
-        showSuccess();
+        showStatus(true);
         return response;
       }
       throw new Error(`${response.status} — ${response.statusText}`);
     })
     .then((response) => response.json())
-    .catch(() => showError())
+    .catch(() => showStatus(false))
     .finally(()=>{
       submitFormData.disabled = false;
     });
