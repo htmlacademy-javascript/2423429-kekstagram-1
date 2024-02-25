@@ -4,17 +4,13 @@ const createErrorMessage = document.querySelector('#error').content.querySelecto
 const createSuccessMessage = document.querySelector('#success').content.querySelector('.success');
 const submitFormData = document.querySelector('.img-upload__submit');
 
-const showStatus = (isPositive, Message, MessageButton) => {
-  if (isPositive) {
-    Message = createSuccessMessage.cloneNode(true);
-    MessageButton = Message.querySelector('.success__button');
-  } else{
-    Message = createErrorMessage.cloneNode(true);
-    MessageButton = Message.querySelector('.error__button');
-  }
-  document.body.appendChild(Message);
-  MessageButton.addEventListener('click', ()=> {
-    Message.remove();
+const showStatus = (status, templateMessage) => {
+
+  const notification = templateMessage.cloneNode(true);
+  const message = notification.querySelector(`.${status}__button`);
+  document.body.appendChild(notification);
+  message.addEventListener('click', ()=> {
+    notification.remove();
   });
 };
 
@@ -27,7 +23,7 @@ export const getPosts = () => fetch(`${SERVER_ADDRESS}/data`)
     throw new Error(`${response.status} — ${response.statusText}`);
   })
   .then((response) => response.json())
-  .catch(() => showStatus(false));
+  .catch(() => showStatus('error', createErrorMessage));
 
 export const outPost = (formData) => {
   submitFormData.disabled = true;
@@ -39,13 +35,13 @@ export const outPost = (formData) => {
     })
     .then((response) => {
       if (response.ok) {
-        showStatus(true);
+        showStatus('success', createSuccessMessage);
         return response;
       }
       throw new Error(`${response.status} — ${response.statusText}`);
     })
     .then((response) => response.json())
-    .catch(() => showStatus(false))
+    .catch(() => showStatus('error', createErrorMessage))
     .finally(()=>{
       submitFormData.disabled = false;
     });
