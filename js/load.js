@@ -1,16 +1,20 @@
 import { SERVER_ADDRESS } from './const.js';
+
 const createErrorMessage = document.querySelector('#error').content.querySelector('.error');
+const createSuccessMessage = document.querySelector('#success').content.querySelector('.success');
 const submitFormData = document.querySelector('.img-upload__submit');
-const showError = () => {
-  const newError = createErrorMessage.cloneNode(true);
-  document.body.appendChild(newError);
-  const tryErrorButton = newError.querySelector('.error__button');
-  tryErrorButton.addEventListener('click', ()=>{
-    newError.remove();
+
+const showStatus = (status, templateMessage) => {
+
+  const notification = templateMessage.cloneNode(true);
+  const message = notification.querySelector(`.${status}__button`);
+  document.body.appendChild(notification);
+  message.addEventListener('click', ()=> {
+    notification.remove();
   });
 };
 
-export const getPosts = () => fetch(`${SERVER_ADDRESS}data`)
+export const getPosts = () => fetch(`${SERVER_ADDRESS}/data`)
   .then((response) => {
     if (response.ok) {
       return response;
@@ -19,19 +23,7 @@ export const getPosts = () => fetch(`${SERVER_ADDRESS}data`)
     throw new Error(`${response.status} — ${response.statusText}`);
   })
   .then((response) => response.json())
-  .catch(() => showError());
-
-
-const createSuccessMessage = document.querySelector('#success').content.querySelector('.success');
-const showSuccess = () => {
-  const newSuccess = createSuccessMessage.cloneNode(true);
-  document.body.appendChild(newSuccess);
-  const trySuccessButton = newSuccess.querySelector('.success__button');
-  trySuccessButton.addEventListener('click', ()=>{
-
-    newSuccess.remove();
-  });
-};
+  .catch(() => showStatus('error', createErrorMessage));
 
 export const outPost = (formData) => {
   submitFormData.disabled = true;
@@ -43,13 +35,13 @@ export const outPost = (formData) => {
     })
     .then((response) => {
       if (response.ok) {
-        showSuccess();
+        showStatus('success', createSuccessMessage);
         return response;
       }
       throw new Error(`${response.status} — ${response.statusText}`);
     })
     .then((response) => response.json())
-    .catch(() => showError())
+    .catch(() => showStatus('error', createErrorMessage))
     .finally(()=>{
       submitFormData.disabled = false;
     });

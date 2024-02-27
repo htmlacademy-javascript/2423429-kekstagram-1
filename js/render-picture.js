@@ -4,6 +4,9 @@ const pictureList = document.querySelector('.pictures');
 
 export function renderPicture(posts) {
   const similarPostFragment = document.createDocumentFragment();
+  const pictures = document.querySelectorAll('.picture');
+  pictures.forEach((el) => el.remove());
+
   for(let i = 0; i < posts.length; i++) {
     const pictureElem = pictureTemplate.cloneNode(true);
     pictureElem.querySelector('.picture__img').src = posts[i].url;
