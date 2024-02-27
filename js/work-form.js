@@ -7,8 +7,9 @@ const changePhoto = document.querySelector('.img-upload__input');
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
 const orderForm = document.querySelector('.img-upload__overlay');
 const valueHashTag = orderForm.querySelector('.text__hashtags');
-
 const imageUploadForm = document.querySelector('.img-upload__form');
+const fileChooser = document.querySelector('.img-upload__input');
+const preview = document.querySelector('.img-upload__preview img');
 
 const pristine = new Pristine(orderForm, {
   classTo: 'img-upload__form',
@@ -80,4 +81,8 @@ setComment.addEventListener('keydown', (evt)=>{
 });
 scalePicture();
 
+fileChooser.addEventListener('change', () => {
+  const file = fileChooser.files[0];
+  preview.src = URL.createObjectURL(file);
+});
 
