@@ -6,6 +6,7 @@ const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
 const changePhoto = document.querySelector('.img-upload__input');
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
 const orderForm = document.querySelector('.img-upload__overlay');
+const valueHashTag = orderForm.querySelector('.text__hashtags');
 
 const imageUploadForm = document.querySelector('.img-upload__form');
 
@@ -47,7 +48,7 @@ pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
 imageUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const isValid = pristine.validate();
-  if (isValid) {
+  if (isValid || valueHashTag.value === '') {
     const formData = new FormData(evt.target);
     outPost(formData);
   }
