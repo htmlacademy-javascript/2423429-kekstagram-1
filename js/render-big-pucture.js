@@ -28,7 +28,7 @@ export function renderBigPicture(pictureElem, Post) {
         comment.classList.remove('hidden');
       }
     });
-    
+
     const comments = bigPicrute.querySelectorAll('.social__comment');
     const commentsCounter = makeCounter(comments)();
 
@@ -83,4 +83,3 @@ export function renderBigPicture(pictureElem, Post) {
     }
   });
 }
-
