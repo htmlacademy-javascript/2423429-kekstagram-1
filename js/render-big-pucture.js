@@ -28,12 +28,11 @@ export function renderBigPicture(pictureElem, Post) {
         comment.classList.remove('hidden');
       }
     });
-
+    
     const comments = bigPicrute.querySelectorAll('.social__comment');
-
     const commentsCounter = makeCounter(comments)();
 
-    if (commentsCounter === Array.from(comments).length){ //TODO: добавить проверку комментариев при открытии формы просмотра фотографии
+    if (commentsCounter === Array.from(comments).length){
       bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
     }
     bigPicrute.querySelector('.comments-count-visible').textContent = commentsCounter;
