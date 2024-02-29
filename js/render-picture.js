@@ -18,4 +18,3 @@ export function renderPicture(posts) {
   pictureList.appendChild(similarPostFragment);
 
 }
-
