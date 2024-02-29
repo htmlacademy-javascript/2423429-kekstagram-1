@@ -65,7 +65,9 @@ export function renderBigPicture(pictureElem, Post) {
     const secondCounter = makeCounter(secondListComments)();
 
     bigPicrute.querySelector('.comments-count-visible').textContent = secondCounter;
-
+    if (secondCounter < COMMENTS_BATCH_LENGTH){
+      bigPicrute.querySelector('.social__comments-loader').classList.add('hidden');
+    }
   };
   const bigPicruteClose = () => {
     buttonAddComment.removeEventListener('click', onLoaderCommentClick);
