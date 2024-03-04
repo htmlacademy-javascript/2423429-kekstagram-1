@@ -1,21 +1,22 @@
 import { scalePicture, resetScale, } from './scale.js';
 import { setDefaultEffect } from './effects.js';
-import { outPost } from './load.js';
-const editPhoto = document.querySelector('.img-upload__overlay');
+import { getIsStatusVisible, outPost } from './load.js';
+const imgUpload = document.querySelector('.img-upload');
+const editPhoto = imgUpload.querySelector('.img-upload__overlay');
 const closeUploadButton = editPhoto.querySelector('.img-upload__cancel');
-const changePhoto = document.querySelector('.img-upload__input');
+const changePhoto = imgUpload.querySelector('.img-upload__input');
 const hashtag = /^#[a-zа-яё0-9]{1,19}$/i;
-const orderForm = document.querySelector('.img-upload__overlay');
+const orderForm = imgUpload.querySelector('.img-upload__overlay');
 const valueHashTag = orderForm.querySelector('.text__hashtags');
-const imageUploadForm = document.querySelector('.img-upload__form');
-const fileChooser = document.querySelector('.img-upload__input');
-const preview = document.querySelector('.img-upload__preview img');
+const imageUploadForm = imgUpload.querySelector('.img-upload__form');
+const fileChooser = imgUpload.querySelector('.img-upload__input');
+const preview = imgUpload.querySelector('.img-upload__preview img');
 
 const pristine = new Pristine(orderForm, {
-  classTo: 'img-upload__form',
+  classTo: 'img-upload__field-wrapper',
   errorClass: 'pristin_error',
   successClass: 'pristin_success',
-  errorTextParent: 'img-upload__wrapper',
+  errorTextParent: 'img-upload__field-wrapper',
   errorTextTag: 'span',
   errorTextClass: 'form__error'
 });
@@ -46,28 +47,30 @@ pristine.addValidator(orderForm.querySelector('.text__hashtags'), (value) =>{
   return true;
 }, 'хэштеги должны быть уникальными, начинаться с #, длинна не больше 20 символов');
 
-imageUploadForm.addEventListener('submit', (evt) => {
+const handleFormSubmit = (evt) => {
   evt.preventDefault();
   const isValid = pristine.validate();
   if (isValid || valueHashTag.value === '') {
     const formData = new FormData(evt.target);
     outPost(formData);
   }
-});
+};
 
 changePhoto.addEventListener('change', () =>{
   editPhoto.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  imageUploadForm.addEventListener('submit', handleFormSubmit);
 });
 const closeForm = ()=>{
   editPhoto.classList.add('hidden');
   document.body.classList.remove('modal-open');
+  imageUploadForm.removeEventListener('submit', handleFormSubmit);
   resetScale();
   setDefaultEffect();
 };
 closeUploadButton.addEventListener('click', closeForm);
 document.addEventListener('keydown', (evt)=>{
-  if(evt.key === 'Escape') {
+  if(evt.key === 'Escape' && !getIsStatusVisible()) {
     closeForm();
   }
 });
