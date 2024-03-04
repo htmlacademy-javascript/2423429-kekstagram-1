@@ -1,4 +1,4 @@
-import { renderBigPicture } from './render-big-pucture.js';
+import { renderBigPicture } from './render-big-picture.js';
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureList = document.querySelector('.pictures');
 
@@ -18,4 +18,3 @@ export function renderPicture(posts) {
   pictureList.appendChild(similarPostFragment);
 
 }
-
